@@ -1,0 +1,41 @@
+@use "../../../scss/constants" as *;
+
+.auth-nav {
+  background-color: transparent;
+
+  .nav-right-container {
+    gap: 10px;
+  }
+
+  button {
+    color: $white;
+    font-weight: bold;
+    border: none;
+    transition: transform 0.1s ease-in-out;
+    width: 100px;
+    height: 52px;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+
+    &:active {
+      transform: scale(0.97, 0.97);
+    }
+  }
+
+  .login-btn {
+    background-color: #343a40;
+  }
+
+  .signup-btn {
+    background-color: $theme;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .auth-nav {
+    .nav-right-container {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@use "./constants" as *;
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("/fonts/fredoka.woff") format("woff");
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: $background;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav {
+  @include display($jc: space-between);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: $white;
+  padding: 1.4rem 1rem;
+
+  * {
+    @include display($ai: center);
+  }
+
+  .nav-left-container {
+    font-family: "Fredoka", sans-serif;
+    color: $theme;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+.propogator {
+  @include display($jc: center, $ai: center);
+  width: 100vw;
+  height: 100dvh;
+}
