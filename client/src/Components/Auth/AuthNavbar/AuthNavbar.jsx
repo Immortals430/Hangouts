@@ -1,7 +1,7 @@
 import { IoShareSocial } from "react-icons/io5";
 import "./AuthNavbar.scss";
 
-export default function AuthNavbar() {
+export default function AuthNavbar({setAuthComponent}) {
   return (
     <nav className="auth-nav">
       <a href="/" className="nav-left-container">
@@ -12,10 +12,10 @@ export default function AuthNavbar() {
       </a>
 
       <div className="nav-right-container">
-        <button className="login-btn">
+        <button className="login-btn" onClick={() => setAuthComponent("login")}>
           Login
         </button>
-        <button className="signup-btn">
+        <button className="signup-btn" onClick={() => setAuthComponent("signup")}>
           Signup
         </button>
       </div>

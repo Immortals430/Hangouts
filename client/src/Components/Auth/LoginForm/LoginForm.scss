@@ -1,0 +1,16 @@
+@use "../../../scss/constants" as *;
+
+.login-form {
+  .login-btn {
+    background-color: #343a40;
+  }
+
+  .signup-para {
+    cursor: default;
+  }
+
+  .signup-btn {
+    background-color: $theme;
+    margin-bottom: 0;
+  }
+}

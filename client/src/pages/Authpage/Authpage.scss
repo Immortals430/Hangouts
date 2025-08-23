@@ -1,0 +1,81 @@
+@use "../../scss/constants" as *;
+
+.auth-container {
+  @include display($ai: center);
+  height: 100dvh;
+
+  .banner {
+    overflow: hidden;
+    width: 42%;
+    height: 100%;
+
+    img {
+      @include image();
+    }
+  }
+
+  // common styles for all auth form
+  .auth-forms {
+    width: 58%;
+
+    form {
+      margin: auto;
+      background-color: $white;
+      padding: 2rem 2.5rem;
+      width: 350px;
+      box-shadow: 0px 0px 15px 10px rgb(224, 224, 224);
+
+      > * {
+        margin-bottom: 0.8rem;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    input {
+      width: 100%;
+      border: none;
+      padding: 5px;
+      border-bottom: 1px solid black;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      @include display($jc: center, $ai: center);
+      cursor: pointer;
+      height: 46px;
+      width: 100%;
+      border: none;
+      padding: 13px;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .link {
+      display: inline-block;
+      color: blue;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .auth-container {
+    justify-content: center;
+    .auth-forms {
+      width: 100%;
+    }
+
+    .banner {
+      display: none;
+    }
+  }
+}

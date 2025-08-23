@@ -5,7 +5,6 @@ const projectName = import.meta.env.VITE_APP_PROJECT_NAME || "Hangouts";
 
 const useAuthCheck = () => {
   const [loading, setLoading] = useState(true);
-  
 
   useEffect(() => {
     const cookie = Cookie.get(projectName);

@@ -12,6 +12,7 @@
     "live": "npm run build && npm run preview"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.2",
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
     "js-cookie": "^3.0.5",

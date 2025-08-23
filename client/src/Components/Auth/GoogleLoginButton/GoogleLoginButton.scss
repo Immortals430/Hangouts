@@ -1,0 +1,7 @@
+@use "../../../scss/constants" as *;
+
+.google-login-btn {
+  @include display($jc: center, $ai: center, $g: 10px);
+  background-color: #a22e1a;
+  padding: 13px;
+}
