@@ -34,6 +34,22 @@ export const googleLoginThunk = createAsyncThunk(
   }
 );
 
+
+export const changePasswordThunk = createAsyncThunk(
+  "user/changePassword",
+  async () => {
+
+  }
+);
+
+
+export const sendOtpThunk = createAsyncThunk(
+  "user/sendOtp",
+  async () => {
+
+  }
+);
+
 export const actions = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export const userSelector = (state) => state.userReducer;
