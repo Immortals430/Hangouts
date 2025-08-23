@@ -25,6 +25,15 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
+
+export const googleLoginThunk = createAsyncThunk(
+  "user/googleLogin",
+  async (token) => {
+    // const {data} = await loginAPI(credentials)
+    // return data.data;
+  }
+);
+
 export const actions = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export const userSelector = (state) => state.userReducer;

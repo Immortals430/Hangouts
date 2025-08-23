@@ -2,7 +2,7 @@ import { useState } from "react";
 import FullPageLoader from "../../FullPageLoader";
 import useAuthCheck from "../../hooks/useAuthCheck";
 import AuthNavbar from "../../Components/Auth/AuthNavbar/AuthNavbar";
-
+import SignupForm from "../../Components/Auth/SignupForm/SignupForm"
 import SigninForm from "../../Components/Auth/LoginForm/LoginForm";
 import "./Authpage.scss"
 
@@ -13,6 +13,7 @@ export default function Authpage() {
 
   const authComponents = {
     login: <SigninForm setAuthComponent={setAuthComponent} />,
+    signup: <SignupForm setAuthComponent={setAuthComponent} />,
 
   };
 

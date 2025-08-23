@@ -17,3 +17,23 @@ API.interceptors.response.use(
 
 export const loginAPI = (credentials) => API.post("/user/login", credentials);
 
+export const googleLoginAPI = (token) =>
+  API.post("/user/google-login", null, {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+export const signupAPI = (token) =>
+  API.post("/user/signup", null, {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+export const getCurrentUserAPI = (token) =>
+  API.get("/user/check-authorization", {
+    headers: {
+      Authorization: token,
+    },
+  });

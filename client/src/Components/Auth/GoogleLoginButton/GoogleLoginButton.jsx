@@ -1,7 +1,7 @@
 import { FaGoogle } from "react-icons/fa";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useDispatch } from "react-redux";
-// import { googleLoginThunk } from "../../../redux/reducers/user_reducer";
+import { googleLoginThunk } from "../../../redux/reducers/user_reducer";
 import { memo, useState } from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 import "./GoogleLoginButton.scss";
@@ -11,12 +11,12 @@ function GoogleLoginButton() {
   const [loading, setLoading] = useState();
 
   const login = useGoogleLogin({
-    // onError: () => setLoading(false),
-    // onSuccess: async ({ access_token }) => {
-    //   setLoading(true);
-    //   await dispatch(googleLoginThunk(access_token));
-    //   setLoading(false);
-    // },
+    onError: () => setLoading(false),
+    onSuccess: async ({ access_token }) => {
+      setLoading(true);
+      await dispatch(googleLoginThunk(access_token));
+      setLoading(false);
+    },
   });
 
   return (
