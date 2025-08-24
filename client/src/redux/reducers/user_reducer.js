@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginAPI } from "../../api/api";
+import { getCurrentUserAPI, loginAPI } from "../../api/api";
 
 const initialState = {
   currentUser: {},
@@ -15,16 +15,29 @@ const userSlice = createSlice({
       // state.currentUser = payload
     });
   },
+  extraReducers: (builder) => {
+    builder.addCase(getCurrentUserThunk.fulfilled, (state, { payload }) => {
+      state.currentUser = payload;
+    });
+  },
 });
+
+export const getCurrentUserThunk = createAsyncThunk(
+  "user/getCurrentUser",
+  async (token) => {
+    const { data } = await getCurrentUserAPI(token);
+    return data.data;
+  }
+);
 
 export const loginThunk = createAsyncThunk(
   "user/login",
   async (credentials) => {
-    // const {data} = await loginAPI(credentials)
+    const {data} = await loginAPI(credentials)
+    console.log(data)
     // return data.data;
   }
 );
-
 
 export const googleLoginThunk = createAsyncThunk(
   "user/googleLogin",
@@ -34,21 +47,12 @@ export const googleLoginThunk = createAsyncThunk(
   }
 );
 
-
 export const changePasswordThunk = createAsyncThunk(
   "user/changePassword",
-  async () => {
-
-  }
+  async () => {}
 );
 
-
-export const sendOtpThunk = createAsyncThunk(
-  "user/sendOtp",
-  async () => {
-
-  }
-);
+export const sendOtpThunk = createAsyncThunk("user/sendOtp", async () => {});
 
 export const actions = userSlice.actions;
 export const userReducer = userSlice.reducer;

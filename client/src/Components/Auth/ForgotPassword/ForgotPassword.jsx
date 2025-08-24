@@ -47,7 +47,7 @@ export default function ForgortPassword({ setAuthForm }) {
 
   // send otp
   async function callSendotp() {
-    if (emailRef.current.value == "") return;
+    if (emailRef.current.value === "") return;
     setLoading(true);
     const { payload } = await dispatch(sendOtp(emailRef.current.value));
     if (payload) {

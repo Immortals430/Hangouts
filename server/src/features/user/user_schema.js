@@ -1,0 +1,55 @@
+import { model, Schema } from "mongoose";
+import toJSON from "../../plugin/toJSON.js"
+
+// schema for user details
+let userSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      validate: {
+        validator: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+        message: (props) => `${props.value} is not a valid email address!`,
+      },
+    },
+    password: {
+      type: String,
+      required: true,
+      select: false,
+    },
+    avatar: {
+      type: String,
+      default: "image-user.jpg",
+    },
+    avatarUrl: {
+      type: String,
+      default: "https://firebasestorage.googleapis.com/v0/b/hangouts-41e52.appspot.com/o/avatar%2Fimage-user.jpg?alt=media&token=a27415bd-57f2-4522-a100-676301952c90"
+    },
+    status: {
+      type: String,
+      enum: ['single', 'married', 'divorced', 'dating']
+    },
+    cover:{
+      type: String,
+      default: "image-user.svg",
+    },
+    coverUrl:{
+      type: String
+    },
+
+    phone: String,
+    location: String,
+    hobbies: String,
+
+  },
+  { timestamps: true }
+);
+
+userSchema.plugin(toJSON); 
+
+export const User = model("users", userSchema);
