@@ -4,6 +4,7 @@ const people = google.people('v1');
 // verify google access token via google people api
 async function verifyToken(req, res, next) {
   const token =req.headers['authorization']
+
   try {
     const oauth2Client = new google.auth.OAuth2();
     oauth2Client.setCredentials({ access_token: token });

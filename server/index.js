@@ -2,8 +2,10 @@ import "dotenv/config"
 import express from "express";
 import cookieParser from "cookie-parser";
 import userRouter from "./src/features/user/user_routes.js";
-import connectDb from "./config/mongoose.js";
+import connectDb from "./src/config/mongoose.js";
 import cors from "cors";
+import "./src/config/emailjs.js"
+import errorhandler from "./src/middlewares/error_handler.js";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -27,6 +29,7 @@ app.get("/", (req, res) => res.end("API working fine"))
 app.use("/api/v1/user", userRouter);
 
 // error handlers
+app.use(errorhandler);
 app.use((req, res) => res.send("wrong api"));
 
 // connect to server and databases

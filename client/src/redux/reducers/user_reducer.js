@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCurrentUserAPI, loginAPI } from "../../api/api";
+import { getCurrentUserAPI, googleLoginAPI, loginAPI } from "../../api/api";
+import { toast } from "react-toastify";
 
 const initialState = {
   currentUser: {},
@@ -8,52 +9,44 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(loginThunk.pending, (state, { payload }) => {
-      console.log("execute login");
-      // state.currentUser = payload
-    });
-  },
-  extraReducers: (builder) => {
-    builder.addCase(getCurrentUserThunk.fulfilled, (state, { payload }) => {
+  reducers: {
+    SET_CURRENTUSER: (state, { payload }) => {
       state.currentUser = payload;
-    });
+    },
   },
 });
 
+// get loggedin user thunk
 export const getCurrentUserThunk = createAsyncThunk(
   "user/getCurrentUser",
-  async (token) => {
-    const { data } = await getCurrentUserAPI(token);
-    return data.data;
+  async (_, { dispatch }) => {
+    const { data } = await getCurrentUserAPI();
+    dispatch(SET_CURRENTUSER(data.data));
   }
 );
 
+// login thunk
 export const loginThunk = createAsyncThunk(
   "user/login",
-  async (credentials) => {
-    const {data} = await loginAPI(credentials)
-    console.log(data)
-    // return data.data;
+  async (credentials, { dispatch }) => {
+    try {
+      const { data } = await loginAPI(credentials);
+      dispatch(SET_CURRENTUSER(data.data));
+    } catch (err) {
+      toast.error(err.response.data.message || "Something went wrong");
+    }
   }
 );
 
+// login with google thunk
 export const googleLoginThunk = createAsyncThunk(
   "user/googleLogin",
   async (token) => {
-    // const {data} = await loginAPI(credentials)
-    // return data.data;
+    const { data } = await googleLoginAPI(token);
+    dispatch(SET_CURRENTUSER(data.data));
   }
 );
 
-export const changePasswordThunk = createAsyncThunk(
-  "user/changePassword",
-  async () => {}
-);
-
-export const sendOtpThunk = createAsyncThunk("user/sendOtp", async () => {});
-
-export const actions = userSlice.actions;
+export const { SET_CURRENTUSER } = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export const userSelector = (state) => state.userReducer;

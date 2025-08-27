@@ -7,6 +7,7 @@ import NotFoundpage from "./pages/NotFoundpage/NotFoundpage.jsx";
 import { Provider } from "react-redux";
 import "./scss/index.scss";
 import { store } from "./redux/store.js";
+import { ToastContainer } from "react-toastify";
 
 const routes = createBrowserRouter([
   {
@@ -20,8 +21,11 @@ const routes = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
-  <Provider store={store}>
-    <RouterProvider router={routes} />
-  </Provider>
+  <>
+    <ToastContainer />
+    <Provider store={store}>
+      <RouterProvider router={routes} />
+    </Provider>
+  </>
   // </StrictMode>,
 );

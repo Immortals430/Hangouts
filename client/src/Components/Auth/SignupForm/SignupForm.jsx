@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import MoonLoader from "react-spinners/MoonLoader";
 import { signupAPI } from "../../../api/api";
+import { toast } from "react-toastify";
+import MoonLoader from "react-spinners/MoonLoader";
 import "./SignupForm.scss";
 
 export default function SignupForm({ setAuthComponent }) {
@@ -32,10 +32,15 @@ export default function SignupForm({ setAuthComponent }) {
       password: e.target.password.value,
       confirmPassword: e.target.confirmPassword.value,
     };
-
-    await signupAPI(formData);
-    e.target.reset();
-    setLoading(false);
+    try {
+      const { data } = await signupAPI(formData);
+      toast.success(data.message);
+      e.target.reset();
+    } catch (err) {
+      toast.error(err.response.data.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -68,7 +73,7 @@ export default function SignupForm({ setAuthComponent }) {
       )}
       <p>
         Aready have an account?{" "}
-        <span className="link" onClick={() => setAuthComponent("signin")}>
+        <span className="link" onClick={() => setAuthComponent("login")}>
           Login
         </span>
       </p>

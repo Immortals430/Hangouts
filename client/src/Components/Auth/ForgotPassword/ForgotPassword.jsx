@@ -1,15 +1,11 @@
 import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { userSelector } from "../../../redux/reducers/user_reducer";
-import { useDispatch } from "react-redux";
-import { sendOtpThunk } from "../../../redux/reducers/user_reducer";
 import { useEffect } from "react";
-import { changePasswordThunk } from "../../../redux/reducers/user_reducer";
 import MoonLoader from "react-spinners/MoonLoader";
+import { changePasswordAPI, sendOtpAPI } from "../../../api/api";
+import { toast } from "react-toastify";
 import "./ForgotPassword.scss";
 
 export default function ForgortPassword({ setAuthForm }) {
-  const dispatch = useDispatch();
   const emailRef = useRef();
   const [passwordState, setPasswordState] = useState("");
   const [confirmPassState, setConfirmPassState] = useState("");
@@ -37,25 +33,32 @@ export default function ForgortPassword({ setAuthForm }) {
       otp: e.target.otp.value,
     };
     setLoading(true);
-    const { payload } = await dispatch(changePassword(passswordData));
-    if (payload) {
+    try {
+      const res = await changePasswordAPI(passswordData);
       e.target.reset();
       setAuthForm("login");
+      toast.success(res.data.message);
+    } catch (err) {
+      toast.error(err.response.data.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   // send otp
   async function callSendotp() {
-    if (emailRef.current.value === "") return;
+    if (!emailRef.current.value) return;
     setLoading(true);
-    const { payload } = await dispatch(sendOtp(emailRef.current.value));
-    if (payload) {
+    try {
+      const res = await sendOtpAPI(emailRef.current.value);
       setOtpSent(true);
+      toast.success(res.data.message);
       emailRef.current.disabled = true;
+    } catch (err) {
+      toast.error(err.response.data.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
