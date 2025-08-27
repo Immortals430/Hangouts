@@ -1,0 +1,110 @@
+@use "../../scss/constants" as *;
+
+.navbar-desktop {
+  border-bottom: 1px solid $background;
+  .nav-mid-container {
+    gap: 0 8px;
+    width: 40%;
+    justify-content: center;
+    > * {
+      justify-content: center;
+      background-color: $background;
+      @include icons($s: 50px);
+      color: $grey;
+      cursor: pointer;
+    }
+
+    svg {
+      font-size: x-large;
+    }
+
+    > a.active {
+      color: $theme;
+      background-color: #d0e4ff;
+    }
+  }
+
+  .nav-right-container {
+    justify-content: flex-end;
+    gap: 0 8px;
+
+    > * {
+      justify-content: center;
+      color: $theme;
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
+      width: 40px;
+      font-size: x-large;
+    }
+
+    .nav-profile {
+      @include icons($s: 35px);
+      cursor: pointer;
+
+    }
+
+    .nav-burger-menu {
+      display: none;
+      // position: relative;
+    }
+  }
+}
+
+// .navbar-m {
+//   position: fixed;
+//   z-index: 100;
+//   bottom: 0;
+//   left: 0;
+//   @include center;
+//   width: 100vw;
+//   justify-content: space-evenly;
+//   padding: 15px;
+//   background-color: $white;
+//   box-shadow: 0px 0px 20px 3px rgb(224, 224, 224);
+//   display: none;
+// }
+
+@media only screen and (max-width: 1000px) {
+  .navbar-desktop {
+    .nav-right-container {
+      // justify-content: flex-end;
+      // > * {
+      //   display: none;
+      // }
+      .nav-burger-menu {
+        display: block;
+      }
+    }
+  }
+
+  // .nav-mid-container {
+  //   .chats {
+  //     display: flex;
+  //   }
+  //   .store {
+  //     display: none;
+  //   }
+  // }
+}
+
+// @media only screen and (max-width: 700px) {
+//   .nav-mid-container {
+//     display: none;
+//   }
+
+//   .nav-mid-container {
+//     * {
+//       cursor: pointer;
+//     }
+//   }
+
+//   .navbar-m {
+//     display: flex;
+//   }
+// }
+
+// @media only screen and (max-width: 400px) {
+//   .navbar-m {
+//     padding: 15px 0;
+//   }
+// }
