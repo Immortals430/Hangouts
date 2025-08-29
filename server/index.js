@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import userRouter from "./src/features/user/user_routes.js";
 import connectDb from "./src/config/mongoose.js";
 import cors from "cors";
+import likeRouter from "./src/features/like/like_route.js"
 import errorhandler from "./src/middlewares/error_handler.js";
 import "./src/config/firebase.js";
 import "./src/config/emailjs.js"
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => res.end("API working fine"))
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/post", postRouter)
+app.use("/api/v1/like", likeRouter)
 
 // error handlers
 app.use(errorhandler);

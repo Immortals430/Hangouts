@@ -7,7 +7,7 @@ const API = axios.create({
 });
 
 // post routes
-export const getPostAPI = (page, userId="") =>
+export const getPostAPI = (page, userId = "") =>
   API.get(`/post/get-post?page=${page}&userId=${userId}`);
 export const deletePostAPI = (postId) =>
   API.delete(`/post/delete-post/${postId}`);
@@ -15,7 +15,10 @@ export const createPostAPI = (data) =>
   API.post(`/post/add-post`, data, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-  
+export const toggleLikeAPI = (postId) => API.get(`/like/toggle/${postId}`);
+
+
+
 
 // user routes
 export const loginAPI = (credentials) => API.post("/user/login", credentials);

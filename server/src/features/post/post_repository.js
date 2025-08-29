@@ -10,16 +10,7 @@ import { ApplicationError } from "../../middlewares/error_handler.js";
 
 
 export default class PostRepository {
-  // get post data
-  async getPost(skip, limit, userId, currentUserId) {
-    let posts = await Post.find(userId ? { uploader: userId } : null)
-      .sort({ _id: -1 })
-      .skip(skip)
-      .limit(limit)
-      .populate("uploader")
 
-    return posts;
-  }
 
   // add post data
   async addPost(uint8Array, caption, uploader) {
@@ -44,21 +35,7 @@ export default class PostRepository {
     return post;
   }
 
-  // delete post data
-  async deletePost(postId, userId) {
-    const post = await Post.findById(postId);
-    if (post.uploader != userId) {
-      throw new ApplicationError("cannot delete other user posts", 401);
-    }
-    if (!post) {
-      throw new ApplicationError("post does not exist", 404);
-    }
-    if (post.url) {
-      const storageRef = ref(getStorage(), `post/${post.image}`);
-      deleteObject(storageRef);
-    }
-    await post.deleteOne();
-  }
+
 
 
 

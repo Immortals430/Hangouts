@@ -1,9 +1,11 @@
 import { compressImage } from "../../utils/sharp.js";
 import PostRepository from "./post_repository.js";
+import PostService from "./post_service.js";
 
 export default class PostController {
   constructor() {
     this.postRepository = new PostRepository();
+    this.postService = new PostService()
   }
 
   // get post
@@ -14,7 +16,7 @@ export default class PostController {
     const skip = (page - 1) * limit;
 
     try {
-      const posts = await this.postRepository.getPost(
+      const posts = await this.postService.getPost(
         skip,
         limit,
         userId,
@@ -51,9 +53,11 @@ export default class PostController {
   async deletePost(req, res, next) {
     const { postId } = req.params;
     try {
-      await this.postRepository.deletePost(postId, req.user.id);
+      await this.postService.deletePost(postId, req.user.id);
+     
       res.status(200).json({ success: true, message: "post deleted successfully" });
     } catch (err) {
+      console.log(err)
       next(err);
     }
   }
