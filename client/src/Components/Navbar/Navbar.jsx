@@ -8,7 +8,7 @@ import { HiOutlineUserGroup } from "react-icons/hi2";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { userSelector } from "../../redux/reducers/user_reducer";
 import Hamburger from "hamburger-react";
-
+import ImgSkeleton from "../Skeleton/ImgSkeleton/ImgSkeleton";
 import "./Navbar.scss";
 
 export default function Navbar({ mobileAside, setMobileAside }) {
@@ -66,7 +66,7 @@ export default function Navbar({ mobileAside, setMobileAside }) {
           className="nav-profile"
           aria-label="profile"
         >
-          {/* profile pic */}
+          <ImgSkeleton src={currentUser.avatarUrl} />
         </NavLink>
 
         <div className="nav-burger-menu">

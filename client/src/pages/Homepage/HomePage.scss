@@ -1,0 +1,24 @@
+@use "../../scss/constants" as *;
+.home-page {
+  @include display($jc: center, $g: 1rem);
+  max-width: 1000px;
+
+  .post-section {
+    flex: 1;
+  }
+
+  .connection-section {
+    position: sticky;
+    top: 0;
+    min-width: 240px;
+    height: calc(100dvh - 104px - 1rem);
+    padding: 12px 15px;
+    background-color: $white;
+    border-radius: 15px;
+
+    > h4 {
+      color: $grey;
+      margin-bottom: 2rem;
+    }
+  }
+}

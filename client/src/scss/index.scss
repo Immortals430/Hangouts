@@ -7,10 +7,10 @@
 }
 
 * {
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: sans-serif;
   background-color: $background;
@@ -19,6 +19,21 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.container {
+  padding-left: 280px;
+  padding-top: calc(96px + 8px);
+  height: 100dvh;
+
+}
+
+main {
+  padding: 0 1rem;
+  margin: auto;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 nav {
@@ -49,4 +64,10 @@ nav {
   @include display($jc: center, $ai: center);
   width: 100vw;
   height: 100dvh;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    padding-left: 0;
+  }
 }

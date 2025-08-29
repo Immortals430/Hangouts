@@ -25,10 +25,10 @@ const useAuthCheck = () => {
   useEffect(() => {
     if (currentUser.id && pathname !== "/auth") {
       navigate(pathname);
-    } else if (currentUser.id && pathname == "/auth") {
+    } else if (currentUser.id && pathname === "/auth") {
       navigate("/");
     } else navigate("/auth");
-  }, [currentUser.id]);
+  }, [currentUser]);
 
   return { loading };
 };

@@ -5,15 +5,19 @@ import Homepage from "./pages/Homepage/Homepage.jsx";
 import Authpage from "./pages/Authpage/Authpage.jsx";
 import NotFoundpage from "./pages/NotFoundpage/NotFoundpage.jsx";
 import { Provider } from "react-redux";
-import "./scss/index.scss";
 import { store } from "./redux/store.js";
 import { ToastContainer } from "react-toastify";
+import Friendpage from "./pages/Friendpage/Friendpage.jsx";
+import "./scss/index.scss";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [{ index: true, element: <Homepage /> }],
+    children: [
+      { index: true, element: <Homepage /> },
+      { path: "/people-you-may-know", element: <Friendpage /> }
+    ],
   },
   { path: "/auth", element: <Authpage /> },
   { path: "*", element: <NotFoundpage /> },

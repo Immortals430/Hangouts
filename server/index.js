@@ -4,9 +4,10 @@ import cookieParser from "cookie-parser";
 import userRouter from "./src/features/user/user_routes.js";
 import connectDb from "./src/config/mongoose.js";
 import cors from "cors";
-import "./src/config/emailjs.js"
 import errorhandler from "./src/middlewares/error_handler.js";
-
+import "./src/config/firebase.js";
+import "./src/config/emailjs.js"
+import postRouter from "./src/features/post/post_route.js";
 const PORT = process.env.PORT || 8000;
 const app = express();
 
@@ -17,16 +18,17 @@ app.use(cors({
     methods: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
     allowedHeaders:
       "X-CSRF-Token, X-Requested-With, Accept, Content-Type, Authorization",
-
   })
 );
 
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.get("/", (req, res) => res.end("API working fine"))
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/post", postRouter)
 
 // error handlers
 app.use(errorhandler);

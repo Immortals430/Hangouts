@@ -1,0 +1,19 @@
+.post-container {
+  .postowner-name {
+    .img-skeleton {
+      width: 20%;
+      min-width: 100px;
+      min-height: 8px;
+      border-radius: 5px;
+    }
+  }
+
+  .content-skeleton {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    > div {
+      height: 10px;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

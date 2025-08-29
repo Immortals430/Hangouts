@@ -1,0 +1,70 @@
+@use "../../scss/constants" as *;
+
+.post-container {
+  // @include fontstyle;
+  color: grey;
+  font-size: small;
+  font-weight: 600;
+  background-color: $white;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  //   transition: all 1s ease;
+
+  .post-header {
+    @include display($ai: center, $g: 12px);
+    margin-bottom: 16px;
+  }
+
+  .postowner-logo {
+    @include icons;
+    overflow: hidden;
+  }
+
+  .postowner-name {
+    @include display($fd: column, $g: 0.2rem);
+    flex: 1;
+    p {
+      color: black;
+    }
+  }
+
+  .delete-post {
+    @include icons($s: 30px);
+    @include display($jc: center, $ai: center);
+    background-color: $background;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  .post-text {
+    margin-bottom: 25px;
+  }
+
+  .post-image {
+    margin-bottom: 30px;
+    aspect-ratio: 16 /9;
+  }
+
+  .post-interacts {
+    @include display($ai: center, $jc: space-between);
+    color: black;
+    .like {
+      color: red;
+    }
+    svg {
+      font-size: 1rem;
+    }
+    div {
+      @include display($jc: center, $ai: center, $g: 0.4rem);
+      cursor: pointer;
+    }
+    span {
+      color: black;
+    }
+  }
+}

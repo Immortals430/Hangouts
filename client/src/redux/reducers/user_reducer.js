@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCurrentUserAPI, googleLoginAPI, loginAPI } from "../../api/api";
+import {
+  getCurrentUserAPI,
+  googleLoginAPI,
+  loginAPI,
+  logoutAPI,
+} from "../../api/api";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -41,8 +46,17 @@ export const loginThunk = createAsyncThunk(
 // login with google thunk
 export const googleLoginThunk = createAsyncThunk(
   "user/googleLogin",
-  async (token) => {
+  async (token, { dispatch }) => {
     const { data } = await googleLoginAPI(token);
+    dispatch(SET_CURRENTUSER(data.data));
+  }
+);
+
+// logout
+export const logoutThunk = createAsyncThunk(
+  "user/logout",
+  async (_, { dispatch }) => {
+    const { data } = await logoutAPI();
     dispatch(SET_CURRENTUSER(data.data));
   }
 );

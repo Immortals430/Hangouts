@@ -9,7 +9,7 @@ export class ApplicationError extends Error {
 }
 
 const errorhandler = (err, req, res, next) => {
-
+  console.log(err.message)
   // mongoose validation error
   if (err instanceof mongoose.Error.ValidationError) {
     return res.status(400).send(err.message);

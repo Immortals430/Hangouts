@@ -172,4 +172,26 @@ export default class UserController {
       next(err);
     }
   }
+
+  // logout
+  async logout(req, res, next) {
+    try {
+      res
+        .status(200)
+        .cookie(projectName, undefined, {
+          httpOnly: true,
+          sameSite: "None",
+          secure: true,
+          domain: undefined,
+          expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+        })
+        .json({
+          success: true,
+          message: "Logged out successfully",
+          data: {},
+        });
+    } catch (err) {
+      next(err);
+    }
+  }
 }

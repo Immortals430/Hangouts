@@ -1,0 +1,32 @@
+@use "../../../scss/constants" as *;
+
+
+/* aside right */
+
+.connection-section{
+
+  .user{
+    font-weight: 600;
+    @include display($ai: center, $g: 1rem);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    
+  }
+
+  .online-logo {
+    background-color: #17a750;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .logo {
+    @include icons($s: 35px);
+  }
+
+  .name {
+    flex: 1;
+    color: black;
+  }
+}
+
