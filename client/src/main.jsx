@@ -3,7 +3,7 @@ import App from "./App.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage.jsx";
 import Authpage from "./pages/Authpage/Authpage.jsx";
-import NotFoundpage from "./pages/NotFoundpage/NotFoundpage.jsx";
+import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 import Storepage from "./pages/StorePage/StorePage.jsx"
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
@@ -22,7 +22,7 @@ const routes = createBrowserRouter([
     ],
   },
   { path: "/auth", element: <Authpage /> },
-  { path: "*", element: <NotFoundpage /> },
+  { path: "*", element: <ErrorPage /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

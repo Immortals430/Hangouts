@@ -7,7 +7,7 @@ const useFetchPost = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector(userSelector);
   const { posts, page, hasPost } = useSelector(postSelector);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // get post
   const getPost = async () => {

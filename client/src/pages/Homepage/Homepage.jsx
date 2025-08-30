@@ -11,7 +11,7 @@ export default function HomePage() {
 
   // get post on initial render.
   const { getPost, posts, loading, page, hasPost } = useFetchPost();
-
+ 
   // infinite scroll
   useInfiniteScroll(containerRef, getPost, loading, page, hasPost);
   
