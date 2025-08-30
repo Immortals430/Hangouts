@@ -1,0 +1,30 @@
+@use "../../scss/constants" as *;
+
+.store-grid {
+  display: grid;
+  @include display($d: grid, $g: 3rem 1rem);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+  .card {
+    @include display($fd: column, $g: 1rem);
+    cursor: pointer;
+    aspect-ratio: 3 / 5;
+  }
+
+  .image-container {
+    aspect-ratio: 3 / 4;
+  }
+  h4 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+  h3 {
+    color: #dd5621;
+  }
+  .details {
+    @include display($g: 0.4rem, $fd: column);
+  }
+}

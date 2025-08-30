@@ -4,7 +4,7 @@ import "./PostSkeleton.scss";
 
 export default function PostSkeleton() {
   return (
-    <div className="post-container">
+    <div className="post-container skeleton">
       <div className="post-header">
         <div className="img-skeleton postowner-logo"></div>
         <div className="postowner-name">

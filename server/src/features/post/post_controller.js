@@ -12,7 +12,7 @@ export default class PostController {
   async getPost(req, res, next) {
     const { userId, page } = req.query;
     const currentUserId = req.user.id;
-    const limit = 10;
+    const limit = 5;
     const skip = (page - 1) * limit;
 
     try {

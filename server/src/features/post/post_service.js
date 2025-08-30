@@ -43,6 +43,7 @@ export default class PostService {
 
     // delete post likes
 
-    await Like.deleteMany({ post: postId });
+    const result = await Like.deleteMany({ post: postId });
+
   }
 }

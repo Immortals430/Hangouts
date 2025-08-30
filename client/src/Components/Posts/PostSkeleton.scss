@@ -1,6 +1,9 @@
-.post-container {
+.post-container.skeleton {
+  .img-skeleton{
+    position: relative;
+  }
   .postowner-name {
-    .img-skeleton {
+    .img-skeleton { 
       width: 20%;
       min-width: 100px;
       min-height: 8px;

@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage.jsx";
 import Authpage from "./pages/Authpage/Authpage.jsx";
 import NotFoundpage from "./pages/NotFoundpage/NotFoundpage.jsx";
+import Storepage from "./pages/StorePage/StorePage.jsx"
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
 import { ToastContainer } from "react-toastify";
@@ -16,7 +17,8 @@ const routes = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Homepage /> },
-      { path: "/people-you-may-know", element: <Friendpage /> }
+      { path: "/people-you-may-know", element: <Friendpage /> },
+      { path: "/store", element: <Storepage /> }
     ],
   },
   { path: "/auth", element: <Authpage /> },

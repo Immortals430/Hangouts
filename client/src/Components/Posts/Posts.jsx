@@ -23,69 +23,68 @@ function Posts({ posts, loading }) {
     let date = new Date(data);
     return date.toDateString();
   }, []);
-  console.log(posts)
+
   return (
-    <>
-      <section>
-        {posts.map((post) => (
-          <div className="post-container" key={post.id}>
-            {post.isDeleting ? (
-              <div>Deleting</div>
-            ) : (
-              <div className="post-header">
-                <div className="postowner-logo">
-                  <ImgSkeleton src={post.uploader.avatarUrl} />
+    <section>
+      {posts.map((post) => (
+        <div className="post-container" key={post.id}>
+          {post.isDeleting ? (
+            <div>Deleting</div>
+          ) : (
+            <div className="post-header">
+              <div className="postowner-logo">
+                <ImgSkeleton src={post.uploader.avatarUrl} />
+              </div>
+              <div className="postowner-name">
+                <p>{post.uploader.name}</p>
+                <div>{formatDate(post.updatedAt)}</div>
+              </div>
+              {post.uploader.id === currentUser.id && (
+                <div
+                  className="delete-post"
+                  onClick={() => dispatch(deletePostThunk(post))}
+                >
+                  <RxCross2 />
                 </div>
-                <div className="postowner-name">
-                  <p>{post.uploader.name}</p>
-                  <div>{formatDate(post.updatedAt)}</div>
-                </div>
-                {post.uploader.id === currentUser.id && (
-                  <div
-                    className="delete-post"
-                    onClick={() => dispatch(deletePostThunk(post))}
-                  >
-                    <RxCross2 />
-                  </div>
-                )}
-              </div>
-            )}
-            {/* post content */}
-            {post.caption && (
-              <div className="post-text">
-                <p>{post.caption}</p>
-              </div>
-            )}
-            {/* post image */}
-            {post.url && (
-              <div className="post-image">
-                <ImgSkeleton src={post.url} />
-              </div>
-            )}
-            {/* post interactions */}
-            <div className="post-interacts">
-              <div
-                className="like"
-                onClick={() => dispatch(toggleLikeThunk(post))}
-              >
-                {post.liked ? <FaHeart /> : <FaRegHeart />}
-                <span>Like {post.likeCount}</span>
-              </div>
-              <div /* onClick={() => toggleComment(post._id)} */>
-                <FaRegComment color="lime" />
-                <span>Comment</span>
-              </div>
-              <div>
-                <IoIosShareAlt color="blue" />
-                <span>Share</span>
-              </div>
+              )}
+            </div>
+          )}
+          {/* post content */}
+          {post.caption && (
+            <div className="post-text">
+              <p>{post.caption}</p>
+            </div>
+          )}
+          {/* post image */}
+          {post.url && (
+            <div className="post-image">
+              <ImgSkeleton src={post.url} />
+            </div>
+          )}
+          {/* post interactions */}
+          <div className="post-interacts">
+            <div
+              className="like"
+              onClick={() => dispatch(toggleLikeThunk(post))}
+            >
+              {post.liked ? <FaHeart /> : <FaRegHeart />}
+              <span>Like {post.likeCount}</span>
+            </div>
+            <div /* onClick={() => toggleComment(post._id)} */>
+              <FaRegComment color="lime" />
+              <span>Comment</span>
+            </div>
+            <div>
+              <IoIosShareAlt color="blue" />
+              <span>Share</span>
             </div>
           </div>
-        ))}
-      </section>
+        </div>
+      ))}
       {/* loading skeleton */}
-      {/* {loading && <PostSkeleton />} */}
-    </>
+      {loading && <PostSkeleton />}
+
+    </section>
   );
 }
 
